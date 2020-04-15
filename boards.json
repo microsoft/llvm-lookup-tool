@@ -1,0 +1,24 @@
+{
+    "Boards":
+    [
+        {
+            "board":"Adafruit EdgeBadge", 
+            "cpu":"cortex-m4",
+            "llvm-triple":"armv7m-gnueabi",
+            "floating-point":"hard", 
+            "features":"fvp4-d16"
+        },
+        {
+            "board":"Arduino Uno",
+            "cpu":"atmega328p",
+            "llvm-triple":"avr-atmel-none"
+        },
+        {
+            "board":"Azure IoT DevKit", 
+            "cpu":"cortex-m4",
+            "llvm-triple":"armv6m-gnueabi",
+            "floating-point":"soft", 
+            "features":"+fvp4,+d16"
+        }
+    ]
+}
