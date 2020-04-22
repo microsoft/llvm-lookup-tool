@@ -2,7 +2,8 @@
     "Boards":
     [
         {
-            "board":"Adafruit EdgeBadge", 
+            "board":"Adafruit EdgeBadge",
+            "id":"adafruit-edgebadge",
             "cpu":"cortex-m4",
             "llvm-triple":"armv7m-gnueabi",
             "floating-point":"hard", 
@@ -10,11 +11,13 @@
         },
         {
             "board":"Arduino Uno",
+            "id":"arduino-uno-rev3",
             "cpu":"atmega328p",
             "llvm-triple":"avr-atmel-none"
         },
         {
-            "board":"Azure IoT DevKit", 
+            "board":"Azure IoT DevKit",
+            "id":"mxchip-devkit",
             "cpu":"cortex-m4",
             "llvm-triple":"armv6m-gnueabi",
             "floating-point":"soft", 
