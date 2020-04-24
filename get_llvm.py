@@ -4,6 +4,12 @@
 # attributes of boards listed in tabledata.json. For instructions on how to add
 # a new board see the included README file.
 #
+# Options:
+# -h --help............Help text for all commands
+# --list...............List all availble boards
+# --search.............Search list for availble board
+# -g --get.............Print LLVM static compiler argument for selected board
+# -lss --list_select...Print a selectable list of boards
 # Comments, contributions, suggestion, bug reqports, and feature requests are
 # welcome! For source code, current open issues, and bug reports see:
 # https://github.com/microsoft/llvm-lookup-tool
@@ -25,32 +31,67 @@ except ImportError:
     inquirer = False
     pass
 
-
+# Steup a parser to get commands and inputs
 parser = argparse.ArgumentParser(
     description='Get LLVM compiler option for common boards.')
-parser.add_argument('--list', action='store_true',
+# TODO: add mutually exlusive (group = praser.add_mutually_exclusive_group())
+parser.add_argument('--list', '-ls' action='store_true',
                     help='Print a list of availble boards')
-parser.add_argument('--search', metavar='keyword', type=str,
+parser.add_argument('--search', '-s' metavar='keyword', type=str,
                     help='Search for board by keyword (case sensative)')
 parser.add_argument('--get', '-g', metavar='board name', type=str,
                     help='Enter board name to get the LLVM compiler arguments')
 parser.add_argument('--list_select', '-lss', action='store_true')
 args = parser.parse_args()
 
-
-# board_name = input("Enter board name: ")
-
+# Open JSON data base
 with open('boards.json') as f:
     data = json.load(f)
 
 
+def get_board(board_name):
+    ''' Iterate on data and check if entered board name matches one in the
+    database.
+
+    If it does, check what arguments are present and add them to output
+    string, and print the string.
+
+    If no board name matchs print Board not found
+    '''
+    found_flag = False
+    for i in data['Boards']:
+        if board_name == i['board']:
+            found_flag = True
+            output = ''
+            if 'llvm-triple' in i:
+                output += '-mtriple={}'.format(i['llvm-triple'])
+            if 'cpu' in i:
+                output += ' -mcpu={}'.format(i['cpu'])
+            if 'relocation-model' in i:
+                output += ' -relocation-model{}'.format(i['relocation-model'])
+            if 'floating-point' in i:
+                output += ' -float-abi={}'.format(i['floating-point'])
+            if 'features' in i:
+                output += ' -mattr={}'.format(i['features'])
+            print(output)
+            break
+    if found_flag is False:
+        print('Board not found')
+
+
 def list_boards():
+    ''' Loop over all objects in data, and print board names.
+    Run get_board with input from user
+    '''
     for i in data['Boards']:
         print(i['board'])
     get_board(input("Enter board name: "))
 
 
 def list_select():
+    ''' List all avilable board option from JSON database in a selectabl list.
+    returns board name as string.
+    '''
     if inquirer is not False:
         options = []
         for i in data['Boards']:
@@ -72,31 +113,12 @@ def list_select():
 
 
 def search(keyword):
+    '''Searchs data for board name using regex.
+    Prints name of board.
+    '''
     for i in data['Boards']:
         if re.match(keyword, i['board']):
             print(i['board'])
-
-
-def get_board(board_name):
-    found_flag = False
-    for i in data['Boards']:
-        if board_name == i['board']:
-            found_flag = True
-            output = ''
-            if 'llvm-triple' in i:
-                output += '-mtriple={}'.format(i['llvm-triple'])
-            if 'cpu' in i:
-                output += ' -mcpu={}'.format(i['cpu'])
-            if 'relocation-model' in i:
-                output += ' -relocation-model{}'.format(i['relocation-model'])
-            if 'floating-point' in i:
-                output += ' -float-abi={}'.format(i['floating-point'])
-            if 'features' in i:
-                output += ' -mattr={}'.format(i['features'])
-            print(output)
-            break
-    if found_flag is False:
-        print('Board not found')
 
 
 if __name__ == '__main__':

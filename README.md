@@ -14,16 +14,16 @@ More information can be found at the [LLVM Github page](https://github.com/llvm/
 
 ## How to use the lookup tool
 Run the tool in terminal using python:
-python get_llvm.py
+`python get_llvm.py`
 
 Get the LLVM triple and other attributes:
-python get_llvm.py --get "Board Name"
+`python get_llvm.py --get "Board Name"`
 
 Search for an available board:
-python get_llvm.py --search "Board"
+`python get_llvm.py --search "Board"`
 
 List all available boards:
-python get_llvm.py --list
+`python get_llvm.py --list`
 
 Copy the LLVM arguments and save to input during compiling. Note that boards may have different numbers of attributes.
 
