@@ -35,9 +35,9 @@ except ImportError:
 parser = argparse.ArgumentParser(
     description='Get LLVM compiler option for common boards.')
 # TODO: add mutually exlusive (group = praser.add_mutually_exclusive_group())
-parser.add_argument('--list', '-ls' action='store_true',
+parser.add_argument('--list', '-ls', action='store_true',
                     help='Print a list of availble boards')
-parser.add_argument('--search', '-s' metavar='keyword', type=str,
+parser.add_argument('--search', '-s', metavar='keyword', type=str,
                     help='Search for board by keyword (case sensative)')
 parser.add_argument('--get', '-g', metavar='board name', type=str,
                     help='Enter board name to get the LLVM compiler arguments')
@@ -72,6 +72,16 @@ def get_board(board_name):
             if 'floating-point' in i:
                 output += ' -float-abi={}'.format(i['floating-point'])
             if 'features' in i:
+                features_string = ''
+                for attr in i['features']:
+                    if features_string != '':
+                        features_string += ','
+                    if attr['action'] == 'add':
+                        features_string += '+' + attr['attr']
+                    elif attr['action'] == 'remove':
+                        features_string += '-' + attr['attr']
+                output += ' -mattr={}'.format(features_string)
+            elif 'features' in i:
                 output += ' -mattr={}'.format(i['features'])
             print(output)
             break
@@ -109,6 +119,7 @@ def list_select():
         return(answers['board'])
     else:
         print('install PyInquirer for this option')
+        # TODO: better instructions
         exit()
 
 

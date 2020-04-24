@@ -7,7 +7,15 @@
             "cpu":"cortex-m4",
             "llvm-triple":"armv7m-gnueabi",
             "floating-point":"hard", 
-            "features":"fvp4-d16"
+            "features" :
+            [
+                {
+                    "attr":"vfp4", "action":"add"
+                },
+                {
+                    "attr":"d16", "action":"add"
+                }
+            ]
         },
         {
             "board":"Arduino Uno",
@@ -21,7 +29,15 @@
             "cpu":"cortex-m4",
             "llvm-triple":"armv6m-gnueabi",
             "floating-point":"soft", 
-            "features":"+fvp4,+d16"
+            "features":
+            [
+                {
+                    "attr":"vfp4", "action":"add"
+                },
+                {
+                    "attr":"d16", "action":"add"
+                }
+            ]
         }
     ]
 }
