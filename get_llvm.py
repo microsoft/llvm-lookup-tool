@@ -6,8 +6,8 @@
 #
 # Options:
 # -h --help............Help text for all commands
-# --list...............List all availble boards
-# --search.............Search list for availble board
+# --list...............List all available boards
+# --search.............Search list for available board
 # -g --get.............Print LLVM static compiler argument for selected board
 # -lss --list_select...Print a selectable list of boards
 # Comments, contributions, suggestion, bug reqports, and feature requests are
@@ -15,7 +15,7 @@
 # https://github.com/microsoft/llvm-lookup-tool
 #
 # Copyright 2020, Microsoft
-# MIT License terms detialed in LICENSE
+# MIT License terms detailed in LICENSE
 
 import json
 import re
@@ -31,14 +31,14 @@ except ImportError:
     inquirer = False
     pass
 
-# Steup a parser to get commands and inputs
+# Setup a parser to get commands and inputs
 parser = argparse.ArgumentParser(
     description='Get LLVM compiler option for common boards.')
-# TODO: add mutually exlusive (group = praser.add_mutually_exclusive_group())
+# TODO: add mutually exclusive (group = parser.add_mutually_exclusive_group())
 parser.add_argument('--list', '-ls', action='store_true',
-                    help='Print a list of availble boards')
+                    help='Print a list of available boards')
 parser.add_argument('--search', '-s', metavar='keyword', type=str,
-                    help='Search for board by keyword (case sensative)')
+                    help='Search for board by keyword (case sensitive)')
 parser.add_argument('--get', '-g', metavar='board name', type=str,
                     help='Enter board name to get the LLVM compiler arguments')
 parser.add_argument('--list_select', '-lss', action='store_true')
@@ -99,7 +99,7 @@ def list_boards():
 
 
 def list_select():
-    ''' List all avilable board option from JSON database in a selectabl list.
+    ''' List all available board option from JSON database in a selectabl list.
     returns board name as string.
     '''
     if inquirer is not False:
