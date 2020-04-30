@@ -38,6 +38,27 @@
                     "attr":"d16", "action":"add"
                 }
             ]
+        },
+        {
+            "board":"Raspberry Pi Zero",
+            "id":"raspberrypi-zero",
+            "cpu":"arm1176jzf-s",
+            "llvm-triple":"armv6-linux-gnueabihf",
+            "relocation-model":"pic"
+        },
+        {
+            "board":"Raspberry Pi 3B (ARMv7l)",
+            "id":"raspberrypi-3B",
+            "cpu":"cortex-a53",
+            "llvm-triple":"armv7-linux-gnueabihf",
+            "relocation-model":"pic"
+        },
+        {
+            "board":"Raspberry Pi 3B (AArch64)",
+            "id":"raspberrypi-3B-64",
+            "cpu":"cortex-a53",
+            "llvm-triple":"aarch64-unknown-linux-gnu",
+            "relocation-model":"pic"
         }
     ]
 }
