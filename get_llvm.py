@@ -4,6 +4,8 @@
 # attributes of boards listed in tabledata.json. For instructions on how to add
 # a new board see the included README file.
 #
+# __version__ = 1.0.0
+#
 # Options:
 # -h --help............Help text for all commands
 # --list...............List all availble boards
