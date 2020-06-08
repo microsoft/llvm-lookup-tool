@@ -143,3 +143,5 @@ if __name__ == '__main__':
         get_board(args.get)
     if args.list_select:
         get_board(list_select())
+    else:
+        print("No command entered, type --help available options")
