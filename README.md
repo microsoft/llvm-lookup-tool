@@ -13,10 +13,7 @@ LLVM is a set of compiler and toolchain technologies. It's contains multiple com
 More information can be found at the [LLVM Github page](https://github.com/llvm/llvm-project).
 
 ## How to use the lookup tool
-Run the tool in terminal using python:
-`python get_llvm.py`
-
-Get the LLVM triple and other attributes:
+Get the LLVM triple and attributes:
 `python get_llvm.py --get "Board Name"`
 
 Search for an available board:
